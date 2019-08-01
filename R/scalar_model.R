@@ -241,6 +241,39 @@ setRefClass("scalar_model",
             matrixplot(.self$plot_transform(adj[order1,order2]),rowlabels=rn[order1],collabels=cn[order2])
             
             matrixplot(.self$plot_transform(pred[order1,order2]),rowlabels=rn[order1],collabels=cn[order2])
+            
+            par(mfrow=c(1,1)) # Return par to original settings
+        },
+        plot_obs_pred_custom = function(Q)
+        {
+            pred <- .self$prediction(Q)
+            
+            if(membership_name == "LBM")
+            {
+                order1 <- order(memberships[[Q]]$map()$C1)
+                order2 <- order(memberships[[Q]]$map()$C2)
+            }
+            else
+            {
+                order1 <- order(memberships[[Q]]$map()$C)
+                order2 <- order1
+            }
+            
+            rn<-rownames(adj)
+            cn<-colnames(adj)
+            
+            if(is.null(rn))
+            {
+                rn<-1:nrow(adj)
+            }
+            if(is.null(cn))
+            {
+                cn<-1:ncol(adj)
+            }
+            
+            matrixplot(.self$plot_transform(adj[order1,order2]),rowlabels=rn[order1],collabels=cn[order2])
+            
+            matrixplot(.self$plot_transform(pred[order1,order2]),rowlabels=rn[order1],collabels=cn[order2])
         },
         plot_transform = function(x){x},
         residual = function(Q)
