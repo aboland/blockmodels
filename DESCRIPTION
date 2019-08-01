@@ -1,4 +1,4 @@
-Package: blockmodels_tailor
+Package: blockmodelsTest
 Type: Package
 Title: Latent and Stochastic Block Model Estimation by a 'V-EM'
         Algorithm
